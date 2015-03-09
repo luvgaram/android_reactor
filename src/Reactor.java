@@ -19,11 +19,11 @@ public class Reactor {
 	}
 	
 	public void startServer() {
-		Dispatcher dispatcher = new Dispatcher();
 		
-		while(true) {
-			dispatcher.dispatch(serverSocket, handleMap);
-		}
+		// Dispatcher 선택 가능 
+		// Dispatcher dispatcher = new ThreadPerDispatcher();		
+		Dispatcher dispatcher = new ThreadPoolDispatcher();
+		dispatcher.dispatch(serverSocket, handleMap);
 	}
 	
 	// xml에서 헤더명을 가져와서 등록할 경우를 위한 오버로딩
